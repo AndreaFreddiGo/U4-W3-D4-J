@@ -1,10 +1,16 @@
 package andrea_freddi.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity
 public class GaraDiAtletica extends Event {
+    @OneToMany(mappedBy = "garaDiAtletica")
     private List<Person> setAtleti;
+    @OneToOne(mappedBy = "garaVinta")
     private Person vincitore;
 
     public GaraDiAtletica() {

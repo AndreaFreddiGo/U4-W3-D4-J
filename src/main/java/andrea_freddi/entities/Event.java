@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "eventi")
+
 public class Event {
     @Id
     @GeneratedValue

@@ -1,11 +1,7 @@
 package andrea_freddi;
 
-import andrea_freddi.dao.AttendancesDAO;
-import andrea_freddi.dao.EventsDAO;
-import andrea_freddi.dao.LocationsDAO;
-import andrea_freddi.dao.PeopleDAO;
-import andrea_freddi.entities.Location;
-import andrea_freddi.entities.Person;
+import andrea_freddi.dao.*;
+import andrea_freddi.entities.*;
 import com.github.javafaker.Faker;
 
 import javax.persistence.EntityManager;
@@ -25,6 +21,7 @@ public class Application {
         LocationsDAO locationsDAO = new LocationsDAO(em);
         PeopleDAO peopleDAO = new PeopleDAO(em);
         AttendancesDAO attendancesDAO = new AttendancesDAO(em);
+        ConcertoDAO concertoDAO = new ConcertoDAO(em);
         Random rndm = new Random();
 
         // ******************** SALVATAGGIO LOCATIONS, UTENTI E EVENTI ************************
@@ -38,16 +35,16 @@ public class Application {
         Person person1 = new Person(faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), LocalDate.now(), rndm.nextInt(0, 2) == 0 ? 'M' : 'F');
 //        peopleDAO.save(person1);
 
-/*        for (int i = 0; i < 20; i++) {
-            eventsDAO.save(new Event(
-                    faker.chuckNorris().fact(),
-                    LocalDate.of(rndm.nextInt(2023, 2025),
-                            rndm.nextInt(1, 13),
-                            rndm.nextInt(1, 29)),
-                    faker.lorem().fixedString(50),
-                    rndm.nextInt(1, 3) == 1 ? TipoEvento.PRIVATO : TipoEvento.PUBBLICO,
-                    rndm.nextInt(1, 1000),rndm.nextInt(0, 2) == 0 ? location1: location2));
-        }*/
+        Concerto concerto1 = new Concerto("Concerto di Natale", LocalDate.now(), "Concerto di Natale", TipoEvento.PUBBLICO, 1000, location1, Genere.ROCK, true);
+        Concerto concerto2 = new Concerto("Concerto di Capodanno", LocalDate.now(), "Concerto di Capodanno", TipoEvento.PUBBLICO, 1000, location2, Genere.POP, false);
+        Concerto concerto3 = new Concerto("Concerto di Ferragosto", LocalDate.now(), "Concerto di Ferragosto", TipoEvento.PUBBLICO, 1000, location1, Genere.CLASSICO, true);
+        Concerto concerto4 = new Concerto("Concerto di Pasqua", LocalDate.now(), "Concerto di Pasqua", TipoEvento.PUBBLICO, 1000, location2, Genere.POP, false);
+
+        concertoDAO.save(concerto1);
+        concertoDAO.save(concerto2);
+        concertoDAO.save(concerto3);
+        concertoDAO.save(concerto4);
+
 
         // ******************** PARTECIPAZIONE AD UN EVENTO ************************
 

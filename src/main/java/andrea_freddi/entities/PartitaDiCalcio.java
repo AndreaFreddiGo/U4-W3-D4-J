@@ -1,7 +1,9 @@
 package andrea_freddi.entities;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
 
+@Entity
 public class PartitaDiCalcio extends Event {
     private String squadraDiCasa;
     private String squadraOspite;

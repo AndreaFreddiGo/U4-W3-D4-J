@@ -20,6 +20,14 @@ public class Person {
     @OneToMany(mappedBy = "persona")
     private List<Attendance> listaPartecipazioni;
 
+    @OneToOne
+    @JoinColumn(name = "gara_id")
+    private GaraDiAtletica garaVinta;
+
+    @ManyToOne
+    @JoinColumn(name = "garVinta_id")
+    private GaraDiAtletica garaDiAtletica;
+
     public Person() {
     }
 

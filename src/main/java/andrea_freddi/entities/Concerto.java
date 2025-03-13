@@ -1,7 +1,9 @@
 package andrea_freddi.entities;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
 
+@Entity
 public class Concerto extends Event {
     private Genere genere;
     private Boolean inStreaming;

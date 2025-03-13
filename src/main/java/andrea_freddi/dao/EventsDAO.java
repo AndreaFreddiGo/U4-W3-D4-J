@@ -4,7 +4,10 @@ import andrea_freddi.entities.Event;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NamedQuery;
 
+@NamedQuery(name = "getConcertiInStreaming", query = "SELECT e FROM Event e WHERE e.streaming = true")
+@NamedQuery(name = "getConcertiPerGenere", query = "SELECT e FROM Event e WHERE e.genere = :genere")
 public class EventsDAO {
     private EntityManager em;
 
@@ -45,4 +48,5 @@ public class EventsDAO {
             System.out.println(e.getMessage());
         }
     }
+
 }
